@@ -1,0 +1,138 @@
+
+from Menu_inicial import Cadastro 
+import os
+# Fora do loop 
+def titulo():
+    print(
+        '--------------------------------------\n'
+        '       GERENCIADOR DE TAREFAS 📝     \n'
+        '--------------------------------------\n'
+    )
+def Sair_do_Sistema(opcao_saida,flag1,flag2,flag3):
+    if opcao_saida == 'n':
+        return False, False, False
+    elif opcao_saida == 's':
+        return flag1, flag2, False 
+    elif opcao_saida == 'f':
+        return flag1, False, False
+    else:
+        print("Opção inválida. Tente novamente.")
+        return flag1,flag2,flag3
+
+
+# loops
+
+flag1 = True
+flag2 = True
+flag3 = True 
+
+cadastro = Cadastro()
+# Dentro do loop
+
+
+while flag1:
+    os.system('clear') 
+    titulo()
+
+    print(
+        '1 - Registrar novo úsuario\n'
+        '2 - Fazer loguin\n'
+        '3 - Sair\n'
+    )
+
+    #extrutura de descição
+    opcao = int(input('Escolha uma Opção: '))
+
+    if opcao == 1:
+        nome = input('Digite seu nome: ')
+        if  nome.isnumeric():
+            print('Digite Apenas caracteres')
+            input('Aperte enter ')
+            continue
+        if not len(nome) >= 6:
+            print('Digite pelo menos 6 caracteres ')
+            input('Aperte enter ')
+            continue
+
+        email = input('Digite seu E-mail: ')
+        # Verifica se termina com "@gmail.com"
+        if not email.endswith('@gmail.com'):
+            print("Insira um número de endereço válido.")
+            input('Aperte enter ')
+            continue
+        
+        senha = input('Digite sua senha: ')
+        if not len(senha) >= 6:
+            print('Digite na senha pelo menos 6 letras')
+            input('Aperte enter ')
+            continue
+        cadastro.registrar_usuario(nome,email,senha)
+
+#Opção 2
+    elif opcao == 2:
+        email = input('Digite seu email: ')
+        senha = input('Digite sua senha: ')
+        sucesso = cadastro.verificar_loguin(email,senha)
+        if sucesso:
+            print('Login bem-sucedido!')
+        else:
+            print('Email ou senha incorreto!')
+            continue
+
+#Opção 3
+    elif opcao == 3:
+        print(
+        'Deseja Continuar: S - sim | N - Não | F - Voltar para o Menu\n'
+    )
+        opcao_saida = input('Digite: ').lower()
+        flag1,flag2,flag3 = Sair_do_Sistema(opcao_saida,flag1=True,flag2=False,flag3=True)
+        
+   
+    from Menu_principal import Acesso_ao_sistema
+    acessar_o_sistema = Acesso_ao_sistema()
+    while flag2:
+        os.system('clear')
+        print(
+            '====================================\n'
+            '        BEM-VINDO, ISMAEL! 👋\n'
+            '====================================\n'
+        )
+        print(
+            '1 - Adicionar nova tarefa\n'
+            '2 - Ver tarefa\n'
+            '3 - Sair'
+        )
+        menu_pri_op = int(input('Escolha uma opção: '))
+
+        if menu_pri_op == 1:
+            os.system('clear')
+            try:
+                print('-------------------------\n')
+                print('Deseja adionar uma tarefa? \n')
+                print('-------------------------\n')
+                objetivo = input('Objetivo: ')
+
+                print('Nivel de prioridade: baixa, media, alta')
+                prioridade = str(input('Prioridade: '))
+
+                data = input('Prazo de termino: ')
+                acessar_o_sistema.adicionar_tarefa(objetivo,prioridade,data)
+            except:
+                ...
+        elif menu_pri_op == 2:
+            acessar_o_sistema.ver_tarefa()
+            input()
+        elif menu_pri_op == 3:
+            os.system('clear')
+            while flag3:
+                print(
+                'Opção de saida: S - Continuar | N - Finalizar | F - Voltar para o Menu\n'
+                )
+                opcao_saida = input('Digite: ').lower()
+                flag1,flag2,flag3 = Sair_do_Sistema(opcao_saida,flag1,flag2,flag3)
+                print('OLa mundo')
+                print('OLa mundo')
+
+
+        
+            
