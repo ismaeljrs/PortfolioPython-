@@ -14,4 +14,8 @@ class Cadastro:
         print('Senha ou Email incorreto')
         input('enter >>>')
         return False 
-        
+    
+    def titulo(self,email):
+        for usuario in self.usuario:
+            if ['email'] == email and ['nome'] == usuario:
+                return ['nome']

@@ -1,5 +1,6 @@
 
 from Menu_inicial import Cadastro 
+from Menu_principal import Acesso_ao_sistema
 import os
 # Fora do loop 
 def titulo():
@@ -22,17 +23,16 @@ def Sair_do_Sistema(opcao_saida,flag1,flag2,flag3):
 
 # loops
 
-flag1 = True
-flag2 = True
-flag3 = True 
 
 cadastro = Cadastro()
+acessar_o_sistema = Acesso_ao_sistema()
 # Dentro do loop
 
-
+flag1 = True
 while flag1:
     os.system('clear') 
     titulo()
+    print(cadastro.usuario)
 
     print(
         '1 - Registrar novo úsuario\n'
@@ -55,6 +55,7 @@ while flag1:
             continue
 
         email = input('Digite seu E-mail: ')
+        nome_titulo = cadastro.titulo(email)
         # Verifica se termina com "@gmail.com"
         if not email.endswith('@gmail.com'):
             print("Insira um número de endereço válido.")
@@ -71,6 +72,8 @@ while flag1:
 #Opção 2
     elif opcao == 2:
         email = input('Digite seu email: ')
+        nome_titulo = cadastro.titulo(email)
+        
         senha = input('Digite sua senha: ')
         sucesso = cadastro.verificar_loguin(email,senha)
         if sucesso:
@@ -81,22 +84,20 @@ while flag1:
 
 #Opção 3
     elif opcao == 3:
-        print(
-        'Deseja Continuar: S - sim | N - Não | F - Voltar para o Menu\n'
-    )
-        opcao_saida = input('Digite: ').lower()
-        flag1,flag2,flag3 = Sair_do_Sistema(opcao_saida,flag1=True,flag2=False,flag3=True)
-        
-   
-    from Menu_principal import Acesso_ao_sistema
-    acessar_o_sistema = Acesso_ao_sistema()
+            confirm = input('Tem certeza que deseja sair? (s/n): ').lower()
+            if confirm == 's':
+                flag1 = False
+                flag2 = False
+                
+    flag2 = True
     while flag2:
         os.system('clear')
-        print(
-            '====================================\n'
-            '        BEM-VINDO, ISMAEL! 👋\n'
-            '====================================\n'
-        )
+        # print(
+        #     '====================================\n'
+        #     '        BEM-VINDO, ISMAEL! 👋\n'
+        #     '====================================\n'
+        # )
+        print(f'Bem vindo,{nome}')
         print(
             '1 - Adicionar nova tarefa\n'
             '2 - Ver tarefa\n'
@@ -124,14 +125,14 @@ while flag1:
             input()
         elif menu_pri_op == 3:
             os.system('clear')
+            flag3 = True
             while flag3:
                 print(
                 'Opção de saida: S - Continuar | N - Finalizar | F - Voltar para o Menu\n'
                 )
                 opcao_saida = input('Digite: ').lower()
                 flag1,flag2,flag3 = Sair_do_Sistema(opcao_saida,flag1,flag2,flag3)
-                print('OLa mundo')
-                print('OLa mundo')
+            
 
 
         
