@@ -33,6 +33,7 @@ while flag1:
     os.system('clear') 
     titulo()
     print(cadastro.usuario)
+    print(acessar_o_sistema.add_tarefa)
 
     print(
         '1 - Registrar novo úsuario\n'
@@ -132,6 +133,8 @@ while flag1:
                 )
                 opcao_saida = input('Digite: ').lower()
                 flag1,flag2,flag3 = Sair_do_Sistema(opcao_saida,flag1,flag2,flag3)
+    
+    
             
 
 
