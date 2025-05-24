@@ -1,6 +1,5 @@
 
-from Menu_inicial import Cadastro 
-from Menu_principal import Acesso_ao_sistema
+from Menu_inicial import Cadastro , Acesso_ao_sistema
 import os
 # Fora do loop 
 def titulo():
@@ -9,6 +8,7 @@ def titulo():
         '       GERENCIADOR DE TAREFAS 📝     \n'
         '--------------------------------------\n'
     )
+
 def Sair_do_Sistema(opcao_saida,flag1,flag2,flag3):
     if opcao_saida == 'n':
         return False, False, False
@@ -42,8 +42,13 @@ while flag1:
     )
 
     #extrutura de descição
-    opcao = int(input('Escolha uma Opção: '))
+    try:
 
+        opcao = int(input('Escolha uma Opção: '))
+    except:
+        print('Digite apenas números ')
+        input('aperte enter /// ')
+        continue
     if opcao == 1:
         nome = input('Digite seu nome: ')
         if  nome.isnumeric():
@@ -104,7 +109,13 @@ while flag1:
             '2 - Ver tarefa\n'
             '3 - Sair'
         )
-        menu_pri_op = int(input('Escolha uma opção: '))
+        try: 
+
+            menu_pri_op = int(input('Escolha uma opção: '))
+        except:
+            print('Digite apenas números')
+            input('Aperte enter ')
+            continue
 
         if menu_pri_op == 1:
             os.system('clear')
@@ -133,10 +144,25 @@ while flag1:
                 )
                 opcao_saida = input('Digite: ').lower()
                 flag1,flag2,flag3 = Sair_do_Sistema(opcao_saida,flag1,flag2,flag3)
-    
-    
-            
 
 
-        
-            
+
+print(
+     '1 - loguin\n',
+     '2 - Cadastrar\n',
+)
+opcao = int(input('Qual deseja escolher ?'))
+usuario = input('Qual e o seu nome ? ')
+cpf = input('Digite seu CPF')
+telefone = input('telefone')
+
+if opcao == 1:
+     analisar1 = Cliente(usuario, cpf, telefone)
+     cadastro.analisar(analisar1)
+elif opcao == 2:
+     clinete1 = Cliente(usuario, cpf, telefone )
+     print(cadastro.adicionar(clinete1))
+     cadastro.listar()
+else:
+     print('erro não tem')
+
